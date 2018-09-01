@@ -1,0 +1,15 @@
+<p>
+  user works!
+</p>
+
+
+<div *ngFor="let user of users | async">
+  <h3>User ID: {{user.id}}</h3>
+  <p>Age: {{user.age}}</p>
+
+  <button (click)="updateUser(user.id, user.age + 1 )">Make me older</button>
+  <button (click)="updateUser(user.id, user.age - 1 )">Make me younger</button>
+  <button (click)="deleteUser(user.id)">Delete me</button>
+</div>
+
+<button (click)="createUser()">CREATE new User</button>
