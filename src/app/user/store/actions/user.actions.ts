@@ -8,6 +8,9 @@ import { UserCreateAction } from './user.create.action';
 import { UserUpdateFailedAction } from './user.update-failed.action';
 import { UserCreateSuccessAction } from './user.create-success.action';
 import { UserCreateFailedAction } from './user.create-failed.action';
+import { UserDeleteAction } from './user.delete.action';
+import { UserDeleteSuccessAction } from './user.delete-success.action';
+import { UserDeleteFailedAction } from './user.delete-failed.action';
 
 export enum UserActionTypes {
   // Firestore actions
@@ -23,6 +26,9 @@ export enum UserActionTypes {
   CREATE = '[User] create',
   CREATE_SUCCESS = '[User] create success',
   CREATE_FAILED = '[User] create failed',
+  DELETE = '[User] delete',
+  DELETE_SUCCESS = '[User] delete success',
+  DELETE_FAILED = '[User] delete failed',
 }
 
 export type UserActions =
@@ -35,5 +41,8 @@ export type UserActions =
   UserUpdateFailedAction |
   UserCreateAction |
   UserCreateSuccessAction |
-  UserCreateFailedAction
+  UserCreateFailedAction |
+  UserDeleteAction |
+  UserDeleteSuccessAction |
+  UserDeleteFailedAction
   ;

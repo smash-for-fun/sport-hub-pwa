@@ -5,22 +5,18 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { UserQueryAction } from '../actions/user.query.action';
 import { UserActionTypes } from '../actions/user.actions';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { User } from '../../models/user';
 import { UserUpdateAction } from '../actions/user.update.action';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { UserUpdateSuccessAction } from '../actions/user.update-success.action';
-import { UserUpdateFailedAction } from '../actions/user.update-failed.action';
 
 import * as firebase from 'firebase';
 import { UserCreateAction } from '../actions/user.create.action';
+import { UserDeleteSuccessAction } from '../actions/user.delete-success.action';
 
 @Injectable()
 export class UserEffects {
-
-  get timestamp() {
-    return firebase.firestore.FieldValue.serverTimestamp();
-  }
 
   @Effect()
   query$: Observable<Action> = this.actions$.pipe(
@@ -37,12 +33,8 @@ export class UserEffects {
           id: action.payload.doc.id
         }
       };
-    }),
-    tap(action => {
-      console.log(action);
     })
   );
-
 
   // TODO: Catch errors ;)
   @Effect()
@@ -53,7 +45,7 @@ export class UserEffects {
 
       return fromPromise(ref.update(data.changes));
     }),
-     // catchError( error => new UserUpdateFailedAction(error)),
+    // catchError( error => new UserUpdateFailedAction(error)),
     map(() => new UserUpdateSuccessAction())
   );
 
@@ -72,8 +64,24 @@ export class UserEffects {
     map(() => new UserUpdateSuccessAction())
   );
 
+  // TODO: Catch errors ;)
+  @Effect()
+  delete$: Observable<Action> = this.actions$.pipe(
+    ofType<UserUpdateAction>(UserActionTypes.DELETE),
+    switchMap(data => {
+      const ref = this.afs.doc<User>(`users/${data.id}`);
+
+      return fromPromise(ref.delete());
+    }),
+    // catchError( error => new UserUpdateFailedAction(error)),
+    map(() => new UserDeleteSuccessAction())
+  );
 
   constructor(private actions$: Actions, private afs: AngularFirestore) {
 
+  }
+
+  get timestamp() {
+    return firebase.firestore.FieldValue.serverTimestamp();
   }
 }

@@ -1,0 +1,19 @@
+<div class="container" [class.is-mobile]="mobile$ | async">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <ng-content select="app-shell-header"></ng-content>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav [mode]="(mobile$ | async) ? 'over' : 'side'"
+                 [fixedInViewport]="mobile$ | async" fixedTopGap="56"
+                 [opened]="sidebarOpened">
+      <ng-content select="app-shell-sidebar"></ng-content>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <ng-content select="app-shell-content"></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -5,10 +5,10 @@ import { select, Store } from '@ngrx/store';
 
 
 import * as fromUser from '../../store/reducers/user.reducer';
-import { UserAddedAction } from '../../store/actions/user.added.action';
 import { UserQueryAction } from '../../store/actions/user.query.action';
 import { UserUpdateAction } from '../../store/actions/user.update.action';
 import { UserCreateAction } from '../../store/actions/user.create.action';
+import { UserDeleteAction } from '../../store/actions/user.delete.action';
 
 @Component({
   selector: 'app-user',
@@ -18,16 +18,15 @@ import { UserCreateAction } from '../../store/actions/user.create.action';
 export class UserComponent implements OnInit {
   users: Observable<User[]>;
 
-  constructor(private userStore: Store<fromUser.State>) {
+  constructor(private userStore: Store<fromUser.UserState>) {
     this.users = this.userStore.pipe(select(fromUser.selectAll));
-    this.userStore.dispatch(new UserQueryAction())
+    this.userStore.dispatch(new UserQueryAction());
   }
 
   ngOnInit() {
   }
 
   createUser() {
-
     this.userStore.dispatch(new UserCreateAction(new User()));
   }
 
@@ -36,6 +35,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(id: string) {
+    this.userStore.dispatch(new UserDeleteAction(id));
   }
 
 }

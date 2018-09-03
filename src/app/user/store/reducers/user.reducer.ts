@@ -5,14 +5,14 @@ import { createFeatureSelector } from '@ngrx/store';
 
 export const userAdapter = createEntityAdapter<User>();
 
-export interface State extends EntityState<User> {
+export interface UserState extends EntityState<User> {
 }
 
-export const initialState: State = userAdapter.getInitialState();
+export const initialState: UserState = userAdapter.getInitialState();
 
 
 export function userReducer(
-  state: State = initialState,
+  state: UserState = initialState,
   action: UserActions
 ) {
   switch (action.type) {
@@ -34,7 +34,7 @@ export function userReducer(
 }
 
 
-export const getUserState = createFeatureSelector<State>('user');
+export const getUserState = createFeatureSelector<UserState>('user');
 
 export const {
   selectIds,

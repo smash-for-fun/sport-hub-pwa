@@ -14,6 +14,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {reducers} from './reducers';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
+    MatSnackBarModule,
 
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
@@ -33,6 +36,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
