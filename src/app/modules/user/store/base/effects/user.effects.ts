@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { UserQueryAction } from '../actions/user.query.action';
-import { UserActionTypes } from '../actions/user.actions';
+import {
+  UserActionTypes,
+  UserCreateAction,
+  UserDeleteSuccessAction,
+  UserQueryAction,
+  UserUpdateAction,
+  UserUpdateSuccessAction
+} from '../actions';
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { User } from '../../../models/user';
-import { UserUpdateAction } from '../actions/user.update.action';
 import { fromPromise } from 'rxjs/internal-compatibility';
-import { UserUpdateSuccessAction } from '../actions/user.update-success.action';
 
 import * as firebase from 'firebase';
-import { UserCreateAction } from '../actions/user.create.action';
-import { UserDeleteSuccessAction } from '../actions/user.delete-success.action';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class UserEffects {
@@ -57,7 +59,7 @@ export class UserEffects {
       return fromPromise(this.afs.collection('users').add({
         ...data.payload,
         updatedAt: this.timestamp,
-        createdAt: this.timestamp,
+        createdAt: this.timestamp
       }));
     }),
     // catchError( error => new UserUpdateFailedAction(error)),

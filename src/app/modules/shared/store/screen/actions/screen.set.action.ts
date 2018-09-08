@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ScreenActionTypes } from './screen.actions';
-import { ScreenState } from '../reducers/screen.reducer';
+import { ScreenState } from '../reducers';
 
 const MOBILE_MAX_WIDTH = 425;  // Adjust as needed
 const TABLET_MAX_WIDTH = 1024; // Adjust as needed
