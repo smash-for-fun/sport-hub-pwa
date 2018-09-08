@@ -9,7 +9,9 @@ import { reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/base/effects';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../_shared/shared.module';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,7 @@ import { SharedModule } from '../shared/shared.module';
     StoreModule.forFeature('user', reducers),
     EffectsModule.forFeature([UserEffects])
   ],
-  declarations: [UserComponent]
+  declarations: [UserComponent, UserProfileComponent, UserListComponent]
 })
 export class UserModule {
 }

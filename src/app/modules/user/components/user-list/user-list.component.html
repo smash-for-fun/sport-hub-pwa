@@ -1,0 +1,10 @@
+<mat-card *ngFor="let user of users | async">
+  <h3>User ID: {{user.id}}</h3>
+  <p>Age: {{user.age}}</p>
+
+  <button mat-button (click)="updateUser(user.id, user.age + 1 )">Make me older</button>
+  <button mat-button (click)="updateUser(user.id, user.age - 1 )">Make me younger</button>
+  <button mat-button (click)="deleteUser(user.id)">Delete me</button>
+</mat-card>
+
+<button mat-raised-button (click)="createUser()">CREATE new User</button>
