@@ -11,7 +11,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import {reducers} from './reducers';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,13 +27,13 @@ import { MatSnackBarModule } from '@angular/material';
     HttpClientModule,
     MatSnackBarModule,
 
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
     EffectsModule.forRoot([]),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     BrowserAnimationsModule,
   ],
