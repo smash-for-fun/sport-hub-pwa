@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { SharedModule } from './modules/_shared/shared.module';
+import { AuthModule } from './modules/auth';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AppRoutingModule,
     HttpClientModule,
     MatSnackBarModule,
+    AuthModule.forRoot(),
 
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({

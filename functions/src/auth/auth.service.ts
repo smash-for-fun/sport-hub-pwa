@@ -6,6 +6,10 @@ export class AuthService {
   }
 
   validateFirebaseIdToken(req: any, res: any, next: any) {
+    if (req.method === 'OPTIONS'){
+      return next();
+    }
+
     console.log('Check if request is authorized with Firebase ID token');
 
     if ((!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) &&

@@ -8,7 +8,9 @@ export class UserModel {
 
   public uid: string;
   public email: string;
-  public photoURL?: string;
+  public photoUrl?: string;
   public displayName?: string;
   public favoriteColor?: string;
+
+  public providers: {providerId: string, uid: string}[];
 }

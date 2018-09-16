@@ -6,8 +6,8 @@
   <div class="end">
     <div *ngIf="auth$ | async as authenticated">
       <button [matMenuTriggerFor]="menu" mat-icon-button>
-        <mat-icon *ngIf="!authenticated.loggedIn || !authenticated.user.photoURL">more_vert</mat-icon>
-        <img *ngIf="authenticated.loggedIn && authenticated.user.photoURL" class="avatar" src="{{authenticated.user.photoURL}}" alt="User profile">
+        <mat-icon *ngIf="!authenticated.loggedIn || !authenticated.user.photoUrl">more_vert</mat-icon>
+        <img *ngIf="authenticated.loggedIn && authenticated.user.photoUrl" class="avatar" src="{{authenticated.user.photoUrl}}" alt="User profile">
       </button>
       <mat-menu #menu="matMenu">
         <ng-container [ngTemplateOutlet]="authenticated.loggedIn ? loggedIn : guest" [ngTemplateOutletContext]="{user:authenticated.user}"></ng-container>
@@ -18,6 +18,8 @@
 
 <ng-template #loggedIn let-user="user">
   <button mat-menu-item>Hello {{user.displayName}}</button>
+  <button mat-menu-item (click)="logout()">Logout</button>
+
 </ng-template>
 <ng-template #guest>
   <button mat-menu-item>Hello Guest</button>

@@ -1,23 +1,18 @@
 import { Action } from '@ngrx/store';
 import { LoginActionTypes } from './login.actions';
 import { UserModel } from '../../../../user/models/user.model';
-import UserCredential = firebase.auth.UserCredential;
+import * as firebase from 'firebase';
 
 export class LoginSignedInAction implements Action {
   readonly type = LoginActionTypes.SignedIn;
 
   user: UserModel;
 
-  constructor(payload: { credentials: UserCredential }) {
-    // Sets user data to firestore on login
-    const newUser = new UserModel();
-
-    Object.assign(newUser, {
-      email: payload.credentials.user.email,
-      displayName: payload.credentials.user.displayName,
-      photoURL: payload.credentials.user.photoURL
+  constructor(payload: { user: firebase.User }) {
+    this.user = Object.assign(new UserModel(), {
+      email: payload.user.email,
+      displayName: payload.user.displayName || payload.user.email,
+      photoUrl: payload.user.photoURL
     });
-
-    this.user = newUser;
   }
 }

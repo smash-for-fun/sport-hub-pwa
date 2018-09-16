@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
-import { of, from } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { LoginProvider } from '../models';
 import { auth } from 'firebase/app';
+import * as fromAuth from '../store';
+import { LoginSignedInProviderAction } from '../store/login/actions/login.signed-in-provider.action';
 
 @Injectable()
 export class AuthService {
+  auth$ = this.authStore.pipe(select(fromAuth.loginSelector));
 
   constructor(
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private authStore: Store<fromAuth.AuthState>
   ) {
+    this.afAuth.authState.subscribe(loggedInUser => {
+      console.log('Loggedin?', loggedInUser);
+      if (loggedInUser) {
+        this.authStore.dispatch(new LoginSignedInProviderAction({ user: loggedInUser }));
+      }
+    });
   }
 
   login(provider: LoginProvider) {

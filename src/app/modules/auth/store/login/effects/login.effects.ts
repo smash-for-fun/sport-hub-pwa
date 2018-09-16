@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { LoginActionTypes, LoginSignedInAction, LoginSignedOutAction } from '../actions';
+import { LoginActionTypes, LoginSignedOutAction } from '../actions';
 import { LoginSignInAction } from '../actions/login.sign-in.action';
 import { map, mergeMap } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { AuthService } from '../../../services';
 import { LoginSignOutAction } from '../actions/login.sign-out.action';
+import { LoginSignedInProviderAction } from '../actions/login.signed-in-provider.action';
 
 @Injectable()
 export class LoginEffects {
@@ -15,6 +16,7 @@ export class LoginEffects {
     ofType<LoginSignInAction>(LoginActionTypes.SignIn),
     mergeMap(action => this.signIn(action))
   );
+
 
   @Effect()
   signOut$ = this.actions$.pipe(
@@ -29,9 +31,10 @@ export class LoginEffects {
   }
 
   private signIn(action: LoginSignInAction) {
-    return from(this.authService.login(action.provider)).pipe(
-      map(user => new LoginSignedInAction({ credentials: user }))
-    );
+    return from(this.authService.login(action.provider))
+      .pipe(
+        map(provider => new LoginSignedInProviderAction({ user: provider.user }))
+      );
   }
 
   private signOut() {

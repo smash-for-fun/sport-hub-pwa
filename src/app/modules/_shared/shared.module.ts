@@ -7,7 +7,6 @@ import { ShellSidebarComponent } from './components/shell/shell-sidebar/shell-si
 import { ShellHeaderComponent } from './components/shell/shell-header/shell-header.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
-import { AuthModule } from '../auth';
 
 @NgModule({
   imports: [
@@ -18,7 +17,6 @@ import { AuthModule } from '../auth';
     MatIconModule,
     MatMenuModule,
 
-    AuthModule,
     StoreModule.forFeature('_shared', reducers)
   ],
   declarations: [ShellComponent, ShellContentComponent, ShellSidebarComponent, ShellHeaderComponent],

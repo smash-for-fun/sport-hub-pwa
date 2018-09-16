@@ -3,8 +3,10 @@ import * as fromUser from '../../../user/store';
 import * as fromAuth from '../../../auth/store';
 import { select, Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { UserSelectAction } from '../../store/list/actions/user.select.action';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +20,9 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private userStore: Store<fromUser.UserState>,
     private authStore: Store<fromAuth.AuthState>,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private http: HttpClient
+  ) {
 
   }
 
@@ -28,4 +32,14 @@ export class UserProfileComponent implements OnInit {
       map(param => this.userStore.dispatch(new UserSelectAction({ uid: param.get('id') })))
     ).subscribe();
   }
+
+
+  sendTestMail() {
+    this.http.get(`${environment.api }/testmail`).subscribe(r => {
+      console.log(r);
+    }, e => {
+      console.error(e);
+    });
+  }
+
 }
