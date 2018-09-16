@@ -2,7 +2,7 @@
 
 # settings
 environments/
-!/environments/environment.example.ts
+!environments/environment.example.ts
 
 # compiled output
 /dist
