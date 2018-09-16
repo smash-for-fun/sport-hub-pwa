@@ -3,17 +3,18 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
+import { select, Store } from '@ngrx/store';
+import * as fromAuth from '../store';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private store: Store<fromAuth.AuthState>, private router: Router) {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.auth.user.pipe(
+    return this.store.pipe(select(fromAuth.loginSelector)).pipe(
       take(1),
-      map(user => !!user),
+      map(user => user.loggedIn),
       tap(loggedIn => {
         if (!loggedIn) {
           console.log('access denied');

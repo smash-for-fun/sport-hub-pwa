@@ -1,27 +1,25 @@
-<div *ngIf="auth.user | async; then authenticated else guest">
-  <!-- template will replace this div -->
+<div *ngIf="user$ | async as user">
+  <h3>Howdy, {{ user.displayName }}</h3>
+  <img *ngIf="user.photoURL" [src]="user.photoURL">
+  <p>UID: {{ user.uid }}</p>
+  <p>Favorite Color: {{ user?.favoriteColor }} </p>
+
+
+  <div *ngIf="auth$ | async as authenticated">
+    <ng-container [ngTemplateOutlet]="authenticated.loggedIn ? loggedIn : guest"
+                  [ngTemplateOutletContext]="{me:authenticated.user, user: user}"></ng-container>
+  </div>
 </div>
 
-
-<!-- User NOT logged in -->
-<ng-template #guest>
-  <h3>Howdy, GUEST</h3>
-  <p>Login to get started...</p>
-
-  <button (click)="auth.googleLogin()">
-    <i class="fa fa-google"></i> Connect Google
-  </button>
-
+<ng-template #loggedIn let-user="user" let-me="me">
+<div>
+  <p>Stuff</p>
+  <pre>{{me.uid | json: 2}}</pre>
+  <pre>{{user.uid | json: 2}}</pre>
+</div>
+  <p *ngIf="me.uid == user.uid"> This is you! </p>
 </ng-template>
 
+<ng-template #guest>
 
-<!-- User logged in -->
-<ng-template #authenticated>
-  <div *ngIf="auth.user | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
-    <img [src]="user.photoURL">
-    <p>UID: {{ user.uid }}</p>
-    <p>Favorite Color: {{ user?.favoriteColor }} </p>
-    <button (click)="auth.signOut()">Logout</button>
-  </div>
 </ng-template>

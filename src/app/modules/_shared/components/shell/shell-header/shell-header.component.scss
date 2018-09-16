@@ -1,0 +1,22 @@
+:host {
+  flex: 1 1 auto;
+}
+
+.top-bar {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.middle {
+  flex: 1 1 auto;
+}
+
+img.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

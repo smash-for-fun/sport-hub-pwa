@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../models/user';
+import { UserModel } from '../../models/user.model';
 import { select, Store } from '@ngrx/store';
-import * as fromBase from '../../store/base';
-import { UserCreateAction, UserDeleteAction, UserQueryAction, UserUpdateAction } from '../../store/base';
+import * as fromBase from '../../store';
+import { UserQueryAction, UserUpdateAction } from '../../store/list';
 
 @Component({
   selector: 'app-user-list',
@@ -11,23 +11,13 @@ import { UserCreateAction, UserDeleteAction, UserQueryAction, UserUpdateAction }
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
-  users: Observable<User[]>;
+  users: Observable<UserModel[]> = this.userStore.pipe(select(fromBase.selectAllUsers));
 
-  constructor(private userStore: Store<fromBase.BaseState>) {
-    this.users = this.userStore.pipe(select(fromBase.selectAll));
+  constructor(private userStore: Store<fromBase.ListState>) {
     this.userStore.dispatch(new UserQueryAction());
-  }
-
-  createUser() {
-    this.userStore.dispatch(new UserCreateAction(new User()));
   }
 
   updateUser(id: string, age: number) {
     this.userStore.dispatch(new UserUpdateAction(id, { age }));
   }
-
-  deleteUser(id: string) {
-    this.userStore.dispatch(new UserDeleteAction(id));
-  }
-
 }

@@ -59,7 +59,7 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
- * base can disable parts of macroTask/DomEvents patch by setting following flags
+ * list can disable parts of macroTask/DomEvents patch by setting following flags
  */
 
  // (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame

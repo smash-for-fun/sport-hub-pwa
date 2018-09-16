@@ -1,1 +1,26 @@
-<ng-content></ng-content>
+<div class="top-bar">
+  <div class="left">
+    <ng-content></ng-content>
+  </div>
+  <div class="middle"></div>
+  <div class="end">
+    <div *ngIf="auth$ | async as authenticated">
+      <button [matMenuTriggerFor]="menu" mat-icon-button>
+        <mat-icon *ngIf="!authenticated.loggedIn || !authenticated.user.photoURL">more_vert</mat-icon>
+        <img *ngIf="authenticated.loggedIn && authenticated.user.photoURL" class="avatar" src="{{authenticated.user.photoURL}}" alt="User profile">
+      </button>
+      <mat-menu #menu="matMenu">
+        <ng-container [ngTemplateOutlet]="authenticated.loggedIn ? loggedIn : guest" [ngTemplateOutletContext]="{user:authenticated.user}"></ng-container>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+
+<ng-template #loggedIn let-user="user">
+  <button mat-menu-item>Hello {{user.displayName}}</button>
+</ng-template>
+<ng-template #guest>
+  <button mat-menu-item>Hello Guest</button>
+  <button mat-menu-item (click)="loginGoogle()">Google</button>
+  <button mat-menu-item (click)="loginEmail()">Email</button>
+</ng-template>

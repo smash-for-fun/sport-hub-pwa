@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -8,5 +9,10 @@ import { select, Store } from '@ngrx/store';
 })
 export class UserComponent {
 
+  constructor(private router: Router) {
+  }
 
+  navigate(route: string) {
+    this.router.navigate([route]);
+  }
 }

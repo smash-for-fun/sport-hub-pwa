@@ -1,66 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { of, from } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { auth, User } from 'firebase';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { AppUser } from '../models/user.interface';
+import { Store } from '@ngrx/store';
+import { LoginProvider } from '../models';
+import { auth } from 'firebase/app';
 
 @Injectable()
 export class AuthService {
 
-  user: Observable<User>;
-
   constructor(
-    private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private router: Router
+    private afAuth: AngularFireAuth
   ) {
-
-    //// Get auth data, then get firestore user document || null
-    this.user = this.afAuth.authState.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-        } else {
-          return of(null);
-        }
-      })
-    );
   }
 
-  googleLogin() {
-    const provider = new auth.GoogleAuthProvider();
-    return this.oAuthLogin(provider);
+  login(provider: LoginProvider) {
+    switch (provider) {
+      case LoginProvider.GOOGLE:
+        return this.socialLogin(new auth.GoogleAuthProvider());
+      case LoginProvider.MAIL:
+        return this.emailLogin('test@gmail.com', 'test123');
+    }
   }
 
   signOut() {
-    this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/']);
-    });
+    return this.afAuth.auth.signOut();
   }
 
-  private oAuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
-      .then((credential) => {
-        this.updateUserData(credential.user);
-      });
+  private emailSignUp(email: string, password: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  private updateUserData(user) {
-    // Sets user data to firestore on login
+  private emailLogin(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
 
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-
-    const data: AppUser = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL
-    };
-
-    return userRef.set(data, { merge: true });
-
+  private socialLogin(selectedProvider) {
+    return this.afAuth.auth.signInWithPopup(selectedProvider);
   }
 }
