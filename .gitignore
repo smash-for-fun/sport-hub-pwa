@@ -9,8 +9,14 @@ environments/
 /tmp
 /out-tsc
 
+dist/
+tmp/
+out-tsc/
+
 # dependencies
 /node_modules
+node_modules/
+
 
 # IDEs and editors
 /.idea
@@ -36,6 +42,8 @@ environments/
 npm-debug.log
 yarn-error.log
 testem.log
+.runtimeconfig.json
+firebase-debug.log
 /typings
 
 # System Files
