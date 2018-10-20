@@ -1,8 +1,13 @@
-<mat-card *ngFor="let user of users | async">
-  <h3><a [routerLink]="[user.uid]">User ID: {{user.uid}}</a></h3>
-  <p>Age: {{user.age}}</p>
+<h1>Users</h1>
+<form (ngSubmit)="searchUser($event)" #heroForm="ngForm">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Search user" name="search" [(ngModel)]="search">
+    <!-- <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+      <mat-icon>close</mat-icon>
+    </button> -->
+  </mat-form-field>
+</form>
 
-  <button mat-button (click)="updateUser(user.uid, user.age + 1 )">Make me older</button>
-  <button mat-button (click)="updateUser(user.uid, user.age - 1 )">Make me younger</button>
-</mat-card>
-
+<mat-list>
+  <app-user-list-view *ngFor="let user of users | async" [user]="user" (ageUpdate)="updateUser($event)"></app-user-list-view>
+</mat-list>

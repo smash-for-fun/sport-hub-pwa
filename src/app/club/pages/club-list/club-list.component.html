@@ -1,0 +1,10 @@
+<h1>Clubs</h1>
+<form (ngSubmit)="searchClub($event)" #heroForm="ngForm">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Search club" name="search" [(ngModel)]="search">
+  </mat-form-field>
+</form>
+
+<mat-list>
+  <app-club-list-view *ngFor="let club of clubs | async" [club]="club"></app-club-list-view>
+</mat-list>

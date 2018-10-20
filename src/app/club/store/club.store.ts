@@ -1,14 +1,14 @@
-import * as fromList from './clubs';
+import * as fromClubs from './clubs';
 import { clubAdapter } from './clubs';
 
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface ClubState {
-    clubs: fromList.ListState;
+    clubs: fromClubs.ClubListState;
 }
 
 export const reducers: ActionReducerMap<ClubState> = {
-    clubs: fromList.reducer
+    clubs: fromClubs.reducer
 };
 
 const getClubState = createFeatureSelector<ClubState>('club');

@@ -17,15 +17,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthModule } from './auth';
 
-const materialModules = [
-  MatSnackBarModule
-]
-
+const materialModules = [MatSnackBarModule];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     RouterModule,
@@ -42,11 +37,10 @@ const materialModules = [
     EffectsModule.forRoot([]),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

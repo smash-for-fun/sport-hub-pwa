@@ -1,0 +1,7 @@
+<mat-list-item [routerLink]="[user.uid]">
+  <img matListAvatar *ngIf="user.photoUrl" [src]="user.photoUrl" [alt]="user.displayName">
+  <h3 matLine> {{user.displayName}} </h3>
+  <p matLine>
+    <span> Badminton (C1, C2, B1) </span>
+  </p>
+</mat-list-item>

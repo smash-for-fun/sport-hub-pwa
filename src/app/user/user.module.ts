@@ -1,37 +1,40 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { UserRoutingModule } from './user-routing.module';
-import { UserComponent } from './pages/user.component';
-
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './store';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule } from '@angular/material';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './store/list/effects';
-import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../_shared/shared.module';
-import { UserDetailComponent } from './pages';
-import { UserListComponent } from './pages';
-import { LoginComponent } from './pages';
+import { UserListViewComponent } from './components/user-list-view/user-list-view.component';
+import { LoginComponent, UserDetailComponent, UserListComponent } from './pages';
+import { UserComponent } from './pages/user.component';
+import { reducers } from './store';
+import { UserEffects } from './store/list/effects';
+import { UserRoutingModule } from './user-routing.module';
+
+
 
 const materialModules = [
   MatButtonModule,
-  MatCardModule,
   MatListModule,
-]
+  MatInputModule,
+  MatFormFieldModule,
+  MatIconModule
+];
 
 @NgModule({
   imports: [
     CommonModule,
     UserRoutingModule,
     SharedModule,
+    FormsModule,
 
     ...materialModules,
 
     StoreModule.forFeature('user', reducers),
     EffectsModule.forFeature([UserEffects])
   ],
-  declarations: [UserComponent, UserDetailComponent, UserListComponent, LoginComponent]
+  declarations: [UserComponent, UserDetailComponent, UserListComponent, LoginComponent, UserListViewComponent]
 })
 export class UserModule {
 }

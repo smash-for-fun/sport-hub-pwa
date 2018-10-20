@@ -12,12 +12,16 @@ import { UserQueryAction, UserUpdateAction } from '../../store/list';
 })
 export class UserListComponent {
   users: Observable<UserModel[]> = this.userStore.pipe(select(fromBase.selectAllUsers));
+  search: string;
 
-  constructor(private userStore: Store<fromBase.ListState>) {
-    this.userStore.dispatch(new UserQueryAction());
+  constructor(private userStore: Store<fromBase.ListState>) {}
+
+  searchUser() {
+    console.log('Hello', this.search);
+    this.userStore.dispatch(new UserQueryAction({ query: this.search }));
   }
 
-  updateUser(id: string, age: number) {
-    this.userStore.dispatch(new UserUpdateAction(id, { age }));
+  updateUser(update: { uuid: string; age: number }) {
+    this.userStore.dispatch(new UserUpdateAction(update.uuid, { age: update.age }));
   }
 }

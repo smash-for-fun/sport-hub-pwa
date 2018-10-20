@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { ActivatedRoute } from "@angular/router";
-import { filter, map } from "rxjs/operators";
-import { UserSelectAction } from "../../../user/store/list/actions/user.select.action";
-import * as fromUser from '../../../user/store';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { filter, map } from 'rxjs/operators';
 import * as fromAuth from '../../../auth/store';
-import { HttpClient } from "@angular/common/http";
+import * as fromUser from '../../../user/store';
+import { UserSelectAction } from '../../../user/store/list/actions/user.select.action';
 
 @Component({
     selector: 'app-club-detail',
@@ -15,11 +15,9 @@ import { HttpClient } from "@angular/common/http";
   export class ClubDetailComponent implements OnInit {
     constructor(
         private userStore: Store<fromUser.UserState>,
-        private authStore: Store<fromAuth.AuthState>,
         private route: ActivatedRoute,
-        private http: HttpClient
       ) {
-    
+
       }
     ngOnInit() {
         this.route.paramMap.pipe(

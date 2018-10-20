@@ -1,16 +1,19 @@
-export class UserModel {
-  public age = 0;
+import { FirebaseObject } from '../../_shared';
 
-  public updatedAt: Date;
-  public createdAt: Date;
+export class UserModel implements FirebaseObject {
 
-  public isAdmin = false;
+  age = 0;
 
-  public uid: string;
-  public email: string;
-  public photoUrl?: string;
-  public displayName?: string;
-  public favoriteColor?: string;
+  isAdmin = false;
 
-  public providers: {providerId: string, uid: string}[];
+  uid: string;
+  email: string;
+  photoUrl?: string;
+  displayName?: string;
+  favoriteColor?: string;
+
+  updatedAt: Date;
+  createdAt: Date;
+
+  providers: { providerId: string; uid: string }[];
 }

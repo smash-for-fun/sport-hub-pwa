@@ -6,19 +6,21 @@ export const clubAdapter = createEntityAdapter<ClubModel>({
   selectId: (club: ClubModel) => club.uid,
 });
 
-export interface ListState extends EntityState<ClubModel> {
+export interface ClubListState extends EntityState<ClubModel> {
   selectedClub: ClubModel;
+  query: string;
 }
 
-export const initialState: ListState = clubAdapter.getInitialState({
-  selectedClub: null
+export const initialState: ClubListState = clubAdapter.getInitialState({
+  selectedClub: null,
+  query: null
 });
 
 
 export function reducer(
-  state: ListState = initialState,
+  state: ClubListState = initialState,
   action: ClubActions
-): ListState {
+): ClubListState {
   switch (action.type) {
     case ClubActionTypes.ADDED:
       return clubAdapter.addOne(action.payload, state);
@@ -35,6 +37,8 @@ export function reducer(
     case ClubActionTypes.SELECT_SUCCESS:
       return Object.assign({...state, selectedClub: action.club});
 
+    case ClubActionTypes.QUERY:
+      return Object.assign({ ...state, query: action.query });
     default:
       return state;
   }

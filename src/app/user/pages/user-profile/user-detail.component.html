@@ -1,6 +1,6 @@
 <div *ngIf="user$ | async as user">
   <h3>Howdy, {{ user.displayName }}</h3>
-  <img *ngIf="user.photoURL" [src]="user.photoURL">
+  <img *ngIf="user.photoUrl" [src]="user.photoUrl">
   <p>UID: {{ user.uid }}</p>
   <p>Favorite Color: {{ user?.favoriteColor }} </p>
   <button mat-button (click)="sendTestMail()">Send Test mail</button>

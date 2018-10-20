@@ -1,34 +1,52 @@
-import { NgModule } from "@angular/core";
-import { ClubDetailComponent } from "./pages/club-detail/club-detail.component";
-import { ClubComponent } from "./pages/club.component";
-import { CommonModule } from "@angular/common";
-import { ClubRoutingModule } from "./club-routing.module";
-import { SharedModule } from "../_shared/shared.module";
-import { StoreModule } from "@ngrx/store";
-import { reducers } from "src/app/auth/store/auth.store";
-import { EffectsModule } from "@ngrx/effects";
-import { ClubEffects } from "./store";
-import { MatListModule } from "@angular/material";
-
-
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule
+} from '@angular/material';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../_shared/shared.module';
+import { ClubRoutingModule } from './club-routing.module';
+import { ClubCreateFormComponent, ClubListViewComponent } from './components';
+import { ClubCreateComponent, ClubDetailComponent, ClubListComponent } from './pages';
+import { ClubComponent } from './pages/club.component';
+import { ClubEffects, reducers } from './store';
 
 const materialModules = [
-    MatListModule,
-]
+  MatButtonModule,
+  MatListModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatCardModule
+];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ClubRoutingModule,
-        SharedModule,
+  imports: [
+    CommonModule,
+    ClubRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-        ...materialModules,
+    ...materialModules,
 
-        StoreModule.forFeature('club', reducers),
-        EffectsModule.forFeature([ClubEffects])
-    ],
-    declarations: [ClubComponent, ClubDetailComponent]
+    StoreModule.forFeature('club', reducers),
+    EffectsModule.forFeature([ClubEffects])
+  ],
+  declarations: [
+    ClubComponent,
+    ClubDetailComponent,
+    ClubListViewComponent,
+    ClubListComponent,
+    ClubCreateComponent,
+    ClubCreateFormComponent
+  ]
 })
-export class ClubModule {
-
-}
+export class ClubModule {}
