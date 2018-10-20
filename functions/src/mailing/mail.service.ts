@@ -1,34 +1,42 @@
 import * as nodemailer from 'nodemailer';
 import * as functions from 'firebase-functions';
+import * as xoauth from 'xoauth2';
 
 export class MailService {
   private transporter: nodemailer.Transporter;
   private config: functions.config.Config;
 
   // TODO: fix this, not working right now
-  private oauthSettings = {
-    clientId: this.config.mail.clientId,
-    clientSecret: this.config.mail.clientSecret,
-    refreshToken: this.config.mail.refreshToken,
-    accessToken: this.config.mail.accessToken,
-    user: this.config.mail.user,
-    expires: this.config.mail.expires
-  };
+  private oauthSettings;
 
   constructor() {
     this.config = functions.config();
 
+    // this.oauthSettings = {
+    //   clientId: this.config.gmail.client_id,
+    //   clientSecret: this.config.gmail.client_secret,
+    //   // refreshToken: this.config.mail.refreshToken,
+    //   // accessToken: this.config.mail.accessToken,
+    //   user: this.config.gmail.user,
+    //   // expires: this.config.mail.expires
+    // };
+
+
+    console.info('CONFIG!', this.config)
+
     this.transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        type: 'OAuth2',
-        user: this.oauthSettings.user,
-        clientId: this.oauthSettings.clientId,
-        clientSecret: this.oauthSettings.clientSecret,
-        refreshToken : this.oauthSettings.refreshToken,
-        accessToken  : this.oauthSettings.accessToken,
-      }
+        xoauth: xoauth.createXOAuth2Generator({
+          user: 'glenn.latomme@gmail.com',
+          clientId: this.config.gmail.client_id,
+          clientSecret: this.config.gmail.client_secret,
+          refreshToken: '1/jZfInk90GT-L-vzXwV4nYlrifEGBE8FP2R5u4W22m_A'
+        } as any)
+      } as any
     });
+
+    console.log(this.config)
 
 
     // TODO: Check if this is working
@@ -38,8 +46,8 @@ export class MailService {
       console.log('Access Token: %s', token.accessToken);
       console.log('Expires: %s', new Date(token.expires));
 
-      this.oauthSettings.accessToken = token.accessToken;
-      this.oauthSettings.expires = token.expires;
+      // this.oauthSettings.accessToken = token.accessToken;
+      // this.oauthSettings.expires = token.expires;
     });
   }
 

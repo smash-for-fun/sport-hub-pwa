@@ -1,11 +1,7 @@
 import * as admin from 'firebase-admin';
 
 export class AuthService {
-  constructor() {
-    admin.initializeApp();
-  }
-
-  validateFirebaseIdToken(req: any, res: any, next: any) {
+    validateFirebaseIdToken(req: any, res: any, next: any) {
     if (req.method === 'OPTIONS'){
       return next();
     }

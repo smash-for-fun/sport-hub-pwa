@@ -15,7 +15,6 @@ export class AuthService {
     private authStore: Store<fromAuth.AuthState>
   ) {
     this.afAuth.authState.subscribe(loggedInUser => {
-      console.log('Loggedin?', loggedInUser);
       if (loggedInUser) {
         this.authStore.dispatch(new LoginSignedInProviderAction({ user: loggedInUser }));
       }

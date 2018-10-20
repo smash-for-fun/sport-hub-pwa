@@ -101,9 +101,7 @@ export class UserEffects {
   checkUserExists$: Observable<Action> = this.actions$.pipe(
     ofType<LoginSignedInProviderAction>(LoginActionTypes.SignedInProvider),
     switchMap(data => {
-      console.log('Data', data);
       return this.afs.doc<UserModel>(`${this.location}/${data.user.uid}`).valueChanges().pipe(map(r => {
-        console.log('Provider', r);
         return {
           found: r != null,
           user: data.user
@@ -111,7 +109,6 @@ export class UserEffects {
       }));
     }),
     map(userCheck => {
-      console.log('userCheck', userCheck);
       if (!userCheck.found) {
         return new LoginSignUpAction({ user: userCheck.user });
       } else {

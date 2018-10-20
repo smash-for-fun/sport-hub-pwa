@@ -16,10 +16,6 @@ export class ShellHeaderComponent {
   constructor(
     private authStore: Store<fromAuth.AuthState>
   ) {
-
-    this.auth$.subscribe(r => {
-      console.log(r);
-    });
   }
 
   loginGoogle() {

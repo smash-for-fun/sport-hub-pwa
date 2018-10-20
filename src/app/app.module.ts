@@ -12,10 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSnackBarModule } from '@angular/material';
+import { MatSnackBarModule, MatListModule } from '@angular/material';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthModule } from './auth';
+
+const materialModules = [
+  MatSnackBarModule
+]
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { AuthModule } from './auth';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    MatSnackBarModule,
+    ...materialModules,
+
     AuthModule.forRoot(),
 
     StoreModule.forRoot({}),

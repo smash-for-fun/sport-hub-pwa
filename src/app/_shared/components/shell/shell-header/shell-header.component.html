@@ -17,7 +17,7 @@
 </div>
 
 <ng-template #loggedIn let-user="user">
-  <button mat-menu-item>Hello {{user.displayName}}</button>
+  <button mat-menu-item>{{user.displayName}}</button>
   <button mat-menu-item (click)="logout()">Logout</button>
 
 </ng-template>
