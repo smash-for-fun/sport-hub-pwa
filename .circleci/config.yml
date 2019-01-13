@@ -44,7 +44,7 @@ jobs:
           name: Testing
           command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           environment:
-            JUNIT_REPORT_PATH: ../junit/
+            JUNIT_REPORT_PATH: ../coverage/
             JUNIT_REPORT_NAME: test-results.xml
           when: always
 
@@ -56,15 +56,10 @@ jobs:
 
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: ./junit
+          path: ./coverage
 
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: ./junit
-
-      - run: # run coverage report
-          name: code-coverage
-          command: './node_modules/.bin/nyc npm test'
-          when: always
+          path: ./coverage
 
       # - codecov/upload:
       #     file: coverage
