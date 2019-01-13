@@ -37,7 +37,9 @@ jobs:
       - image: circleci/node:8.12
 
     working_directory: ~/src
+
     steps:
+      - checkout
       # run tests!
       - run: npm test
 
@@ -53,7 +55,10 @@ jobs:
           prefix: coverage
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results.xml
+
   deploy:
+    - checkout
+
     docker:
       # specify the version you desire here
       - image: circleci/node:8.12
