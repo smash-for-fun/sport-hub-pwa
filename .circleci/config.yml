@@ -48,10 +48,10 @@ jobs:
 
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: ./junit
+          path: ./coverage/test-results.xml
 
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: ./junit
+          path: ./junit/test-results.xml
 
       - run: # run coverage report
           name: code-coverage
