@@ -63,7 +63,7 @@ jobs:
 
       - run: # run coverage report
           name: code-coverage
-          command: './node_modules/.bin/nyc report --reporter=text-lcov'
+          command: './node_modules/.bin/nyc npm test'
           when: always
 
       # - codecov/upload:
