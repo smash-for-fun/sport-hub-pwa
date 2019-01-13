@@ -49,17 +49,15 @@ jobs:
       - run:
           name: Debug
           command: |
-            printenv
-            echo "Da Tree"
-            ls -R ./src
+            ls -R ./srcjunit
           when: always
 
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: coverage
+          path: ./junit
 
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: junit/test-results.xml
+          path: ./junit
 
       - run: # run coverage report
           name: code-coverage
