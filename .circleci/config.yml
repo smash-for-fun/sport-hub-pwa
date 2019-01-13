@@ -51,7 +51,7 @@ jobs:
           command: |
             printenv
             echo "Da Tree"
-            tree -d /src
+            ls -R /src
           when: always
 
       - store_artifacts: # special step to save test results as as artifact
