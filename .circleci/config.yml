@@ -41,12 +41,17 @@ jobs:
       - run:
           name: Testing
           command: |
-            echo 'Testing $JUNIT_REPORT_PATH'
             npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-            tree -d /src
           environment:
             JUNIT_REPORT_PATH: ./junit/
             JUNIT_REPORT_NAME: test-results.xml
+          when: always
+      - run:
+          name: Debug
+          command: |
+            printenv
+            echo "Da Tree"
+            tree -d /src
           when: always
 
       - store_artifacts: # special step to save test results as as artifact
