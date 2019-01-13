@@ -34,6 +34,8 @@ node_modules/
 /.sass-cache
 /connect.lock
 /coverage
+/junit
+junit/
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
@@ -42,7 +44,6 @@ testem.log
 firebase-debug.log
 /typings
 
-junit/test.results.xml
 
 # System Files
 .DS_Store
