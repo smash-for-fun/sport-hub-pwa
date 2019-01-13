@@ -7,68 +7,74 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:8.12
+      - image: circleci/node:8.12-browsers
 
     working_directory: ~/src
 
     steps:
+      # Checkout the code from the branch into the working_directory
       - checkout
-
+      # Log the current branch
       - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
-
-      # Download and cache dependencies
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      # Restore local dependencies from cache
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
-      - run: npm install
-
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: npm install
+      # Cache local dependencies if they don't exist
       - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-  test:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8.12
-
-    working_directory: ~/src
-
-    steps:
-      - checkout
-      # run tests!
-      - run: npm test
-
-      - run: # run coverage report
-          name: code-coverage
-          command: './node_modules/.bin/nyc report --reporter=text-lcov'
-      - store_artifacts: # special step to save test results as as artifact
-          # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: test-results.xml
-          prefix: tests
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: coverage
-          prefix: coverage
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: test-results.xml
+      # Lint the source code
+      - run:
+          name: Linting
+          command: npm run lint
+      # Test the source code
+      - run:
+          name: Testing
+          command: npm run test
+      # Build project with different configuration based on
+      # the current branch
+      - run:
+          name: Building
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+                npm run build-qa
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                npm run build-prod
+            else
+                npm run build-dev
+            fi
+      # Cache the full folder for the deploy job
+      # TODO: Check if we can augment files
+      - save_cache:
+          key: v1-files-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
   deploy:
     docker:
-      # specify the version you desire here
-      - image: circleci/node:8.12
+      - image: circleci/node:8.12-browsers
 
     working_directory: ~/src
 
     steps:
-      - checkout
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+
+      # Restore cache from the build job
+      - restore_cache:
+          key: v1-files-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
       - run:
           name: Deploy Master to Firebase
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+          command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 workflows:
   version: 2
