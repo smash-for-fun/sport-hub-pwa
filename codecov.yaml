@@ -1,0 +1,18 @@
+coverage:
+  status:
+    project:
+      default: off
+      frontend:
+        flags: frontend
+      backend:
+        flags: backend
+
+flags:
+  # filter the folder(s) you wish to measure by that flag
+  backend:
+    # only include files in the backend folder
+    paths:
+      - functions/
+  frontend:
+    paths:
+      - src/
