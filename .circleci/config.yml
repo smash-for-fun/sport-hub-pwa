@@ -62,8 +62,8 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: ./coverage
 
-      # - codecov/upload:
-      #     file: coverage
+      - codecov/upload:
+          file: ./coverage/lcov.info
 
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: coverage
