@@ -11,6 +11,9 @@
     "server:local": "npm run build -- --prod && http-server dist/sport-hub-pwa",
     "server:publish": "npm run build -- --prod && firebase deploy --only hosting"
   },
+  "engines" : {
+    "node" : ">=8"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.0.0",
