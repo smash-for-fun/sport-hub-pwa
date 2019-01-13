@@ -56,6 +56,8 @@ jobs:
       # TODO: Check if we can augment files
       - save_cache:
           key: v1-files-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - dist
 
   deploy:
     docker:
@@ -67,6 +69,10 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+
+      - run:
+          name: update-firebase
+          command: 'sudo npm install -g firebase-tools@latest'
 
       # Restore cache from the build job
       - restore_cache:
