@@ -5,7 +5,7 @@ import { UserModel } from '../../../models/user.model';
 export class UserSelectSuccessAction implements Action {
   readonly type = UserActionTypes.SELECT_SUCCESS;
 
-  user: UserModel
+  user: UserModel;
 
   constructor(payload: { user: UserModel }) {
     this.user = payload.user;

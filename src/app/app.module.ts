@@ -19,7 +19,7 @@ import { AuthModule } from './auth';
 
 const materialModules = [
   MatSnackBarModule
-]
+];
 
 
 @NgModule({

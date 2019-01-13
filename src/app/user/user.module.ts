@@ -18,7 +18,7 @@ const materialModules = [
   MatButtonModule,
   MatCardModule,
   MatListModule,
-]
+];
 
 @NgModule({
   imports: [
