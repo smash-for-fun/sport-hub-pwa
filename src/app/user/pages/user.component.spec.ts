@@ -1,6 +1,9 @@
+import { MatListModule } from '@angular/material';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserComponent } from './user.component';
+import { SharedModule } from 'src/app/_shared/shared.module';
+import { TestingModule } from 'src/testing/utils';
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -8,9 +11,9 @@ describe('UserComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserComponent ]
-    })
-    .compileComponents();
+      imports: [TestingModule, MatListModule],
+      declarations: [UserComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

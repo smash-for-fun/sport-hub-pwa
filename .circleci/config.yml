@@ -42,8 +42,7 @@ jobs:
       # Test the source code
       - run:
           name: Testing
-          command: |
-            npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+          command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           environment:
             JUNIT_REPORT_PATH: ../junit/
             JUNIT_REPORT_NAME: test-results.xml
@@ -79,7 +78,6 @@ jobs:
       - run:
           name: Building
           command: npm run build:prod
-
 
       # Cache the full folder for the deploy job
       # TODO: Check if we can augment files

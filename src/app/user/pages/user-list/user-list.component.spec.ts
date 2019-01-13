@@ -1,5 +1,6 @@
+import { MatCardModule } from '@angular/material';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestingModule } from 'src/testing/utils';
 import { UserListComponent } from './user-list.component';
 
 describe('UserListComponent', () => {
@@ -8,9 +9,9 @@ describe('UserListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [TestingModule, MatCardModule],
       declarations: [UserListComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

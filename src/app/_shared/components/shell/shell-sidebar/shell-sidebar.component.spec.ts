@@ -1,3 +1,4 @@
+import { TestingModule } from './../../../../../testing/utils';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShellSidebarComponent } from './shell-sidebar.component';
@@ -8,7 +9,7 @@ describe('ShellSidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShellSidebarComponent ]
+      imports: [TestingModule]
     })
     .compileComponents();
   }));
