@@ -4,7 +4,7 @@ describe('AuthModule', () => {
   let authModule: AuthModule;
 
   beforeEach(() => {
-    authModule = new AuthModule();
+    authModule = new AuthModule(null);
   });
 
   it('should create an instance', () => {

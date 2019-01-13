@@ -36,34 +36,38 @@ jobs:
       - run:
           name: Linting
           command: npm run lint
+
       # Test the source code
       - run:
           name: Testing
-          command: npm run test
+          command: npm run test -- --codeCoverage=true --watch=false
+          environment:
+            JUNIT_REPORT_PATH: ./junit/
+            JUNIT_REPORT_NAME: test-results.xml
+          when: always
+
+      - store_artifacts: # special step to save test results as as artifact
+          # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: ./junit
+
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: ./junit
+
       - run: # run coverage report
           name: code-coverage
           command: './node_modules/.bin/nyc report --reporter=text-lcov'
-      - store_artifacts: # special step to save test results as as artifact
-          # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: test-results.xml
-          prefix: tests
+
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: coverage
           prefix: coverage
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: test-results.xml
+
       # Build project with different configuration based on
       # the current branch
       - run:
           name: Building
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                npm run build-qa
-            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                npm run build-prod
-            else
-                npm run build-dev
-            fi
+          command: npm run build:prod
+
+
       # Cache the full folder for the deploy job
       # TODO: Check if we can augment files
       - save_cache:
