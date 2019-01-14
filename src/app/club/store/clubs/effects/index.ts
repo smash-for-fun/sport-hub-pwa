@@ -1,1 +1,1 @@
-export * from './clubs.effects'
+export * from './clubs.effects';

@@ -1,9 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# settings
-environments/
-!environments/environment.example.ts
-
 # compiled output
 /dist
 /tmp
@@ -38,6 +34,8 @@ node_modules/
 /.sass-cache
 /connect.lock
 /coverage
+/junit
+junit/
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
@@ -45,6 +43,7 @@ testem.log
 .runtimeconfig.json
 firebase-debug.log
 /typings
+
 
 # System Files
 .DS_Store

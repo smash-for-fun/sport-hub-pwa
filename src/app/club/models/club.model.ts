@@ -1,3 +1,3 @@
-export class ClubModel{
+export class ClubModel {
     uid: string;
 }

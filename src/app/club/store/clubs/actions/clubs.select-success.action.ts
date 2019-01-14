@@ -5,7 +5,7 @@ import { ClubModel } from '../../../models/club.model';
 export class ClubSelectSuccessAction implements Action {
   readonly type = ClubActionTypes.SELECT_SUCCESS;
 
-  club: ClubModel
+  club: ClubModel;
 
   constructor(payload: { club: ClubModel }) {
     this.club = payload.club;

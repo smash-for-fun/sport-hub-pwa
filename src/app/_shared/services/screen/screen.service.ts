@@ -4,7 +4,6 @@ import { SetScreen } from '../../store/screen/actions';
 import * as fromShared from '../../store';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })

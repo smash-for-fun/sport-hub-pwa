@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestingModule } from './../../../../../testing/utils';
 import { ShellHeaderComponent } from './shell-header.component';
 
 describe('ShellHeaderComponent', () => {
@@ -8,9 +8,9 @@ describe('ShellHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShellHeaderComponent ]
-    })
-    .compileComponents();
+      imports: [TestingModule],
+      providers: [ShellHeaderComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

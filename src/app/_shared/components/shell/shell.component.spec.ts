@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestingModule } from 'src/testing/utils';
 import { ShellComponent } from './shell.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromAuth from '../../store';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -8,9 +10,9 @@ describe('ShellComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShellComponent ]
-    })
-    .compileComponents();
+      imports: [TestingModule],
+      providers: [ShellComponent, StoreModule.forFeature('auth', fromAuth.reducers)]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -96,7 +96,7 @@ export class ClubEffects {
     // catchError( error => new ClubUpdateFailedAction(error)),
     map(club => new ClubSelectSuccessAction({ club }))
   );
-  
+
   @Effect()
   createClub$: Observable<Action> = this.actions$.pipe(
     ofType<LoginSignUpAction>(LoginActionTypes.SignUp),

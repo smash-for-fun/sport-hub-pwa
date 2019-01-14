@@ -15,20 +15,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private resize$;
 
-  constructor(
-    updates: SwUpdate,
-    snackBar: MatSnackBar,
-    private screenService: ScreenService,
-  ) {
+  constructor(updates: SwUpdate, snackBar: MatSnackBar, private screenService: ScreenService) {
     updates.available.subscribe(event => {
       updates.activateUpdate().then(() => {
-        snackBar.open('New version available', 'refresh').onAction().subscribe(() => {
-          document.location.reload();
-        });
+        snackBar
+          .open('New version available', 'refresh')
+          .onAction()
+          .subscribe(() => {
+            document.location.reload();
+          });
       });
     });
-
-
   }
 
   ngOnInit(): void {
@@ -38,12 +35,14 @@ export class AppComponent implements OnInit, OnDestroy {
         map(() => window.innerWidth),
         distinctUntilChanged(),
         startWith(window.innerWidth),
-        tap(width => this.screenService.setWindowWidth(width)),
-      ).subscribe();
+        tap(width => this.screenService.setWindowWidth(width))
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
-    this.resize$.unsubscribe();
+    if (this.resize$) {
+      this.resize$.unsubscribe();
+    }
   }
-
 }
