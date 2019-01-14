@@ -1,6 +1,6 @@
+import { ClubModel } from './../../../models/club.model';
 import { Action } from '@ngrx/store';
 import { ClubActionTypes } from './clubs.actions';
-import { ClubModel } from '../../../models/club.model';
 
 export class ClubSelectSuccessAction implements Action {
   readonly type = ClubActionTypes.SELECT_SUCCESS;

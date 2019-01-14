@@ -1,13 +1,9 @@
+import { UserModel } from '@app/user/models';
 import { Action } from '@ngrx/store';
-import { UserModel } from '../../../models/user.model';
-import { UserActionTypes } from './user.actions';
+import { UserListActionTypes } from './user.actions';
 
 export class UserUpdateAction implements Action {
-  readonly type = UserActionTypes.UPDATE;
+  readonly type = UserListActionTypes.UPDATE;
 
-  constructor(
-    public uid: string,
-    public changes: Partial<UserModel>) {
-
-  }
+  constructor(public uid: string, public changes: Partial<UserModel>) {}
 }

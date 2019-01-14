@@ -1,10 +1,9 @@
 import { Action } from '@ngrx/store';
-import { UserModel } from '../../../models/user.model';
-import { UserActionTypes } from './user.actions';
 import * as firebase from 'firebase';
+import { UserListActionTypes } from './user.actions';
 
 export class UserCreateAction implements Action {
-  readonly type = UserActionTypes.CREATE;
+  readonly type = UserListActionTypes.CREATE;
 
   constructor(public payload: firebase.User) {
 

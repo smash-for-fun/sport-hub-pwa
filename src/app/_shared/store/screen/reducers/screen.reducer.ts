@@ -6,23 +6,20 @@ export interface ScreenState {
   desktop: boolean;
 }
 
-export const initialState: ScreenState = {
+export const initialScreenState: ScreenState = {
   mobile: false,
   tablet: false,
-  desktop: false,
+  desktop: false
 };
 
-export function screenReducer(state = initialState, action: ScreenActions): ScreenState {
+export function screenReducer(state = initialScreenState, action: ScreenActions): ScreenState {
   switch (action.type) {
-
     case ScreenActionTypes.SetScreen:
       return {
         ...action.payload
       };
 
-
     default:
       return state;
   }
 }
-

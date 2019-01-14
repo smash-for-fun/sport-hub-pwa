@@ -1,10 +1,9 @@
+import { UserModel } from '@app/user/models';
 import { Action } from '@ngrx/store';
-import { UserModel } from '../../../models/user.model';
-import { UserActionTypes } from './user.actions';
+import { UserListActionTypes } from './user.actions';
 
 export class UserModifiedAction implements Action {
-  readonly type = UserActionTypes.MODIFIED;
+  readonly type = UserListActionTypes.MODIFIED;
 
-  constructor(public payload: UserModel) {
-  }
+  constructor(public payload: UserModel) {}
 }

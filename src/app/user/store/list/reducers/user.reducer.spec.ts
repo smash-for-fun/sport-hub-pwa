@@ -1,13 +1,13 @@
-import { initialState, reducer } from './user.reducer';
+import { intialUserState, userListReducer } from './user.reducer';
 
 describe('UserModel Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = userListReducer(intialUserState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(intialUserState);
     });
   });
 });

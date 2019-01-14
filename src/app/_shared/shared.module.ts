@@ -1,18 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatIconModule,
+  MatMenuModule,
   MatSidenavModule,
-  MatToolbarModule,
-  MatMenuModule
+  MatToolbarModule
 } from '@angular/material';
-import { ShellComponent } from './components/shell/shell.component';
-import { ShellContentComponent } from './components/shell/shell-content/shell-content.component';
-import { ShellSidebarComponent } from './components/shell/shell-sidebar/shell-sidebar.component';
-import { ShellHeaderComponent } from './components/shell/shell-header/shell-header.component';
+
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './store';
+import { sharedReducers } from './store';
+import {
+  ShellComponent,
+  ShellContentComponent,
+  ShellSidebarComponent,
+  ShellHeaderComponent
+} from './components';
 
 @NgModule({
   imports: [
@@ -23,7 +26,7 @@ import { reducers } from './store';
     MatIconModule,
     MatMenuModule,
 
-    StoreModule.forFeature('_shared', reducers)
+    StoreModule.forFeature('_shared', sharedReducers)
   ],
   declarations: [
     ShellComponent,

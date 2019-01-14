@@ -1,18 +1,17 @@
-import { Action } from '@ngrx/store';
-import { LoginActions, LoginActionTypes } from '../actions';
-import { UserModel } from '../../../../user/models/user.model';
+import { UserModel } from '@app/user';
+import { LoginActionTypes, LoginActions } from '../actions';
 
 export interface LoginState {
   loggedIn: boolean;
-  user?: UserModel;
-
+  user: UserModel;
 }
 
-export const initialState: LoginState = {
-  loggedIn: false
+export const initialLoginState: LoginState = {
+  loggedIn: false,
+  user: null
 };
 
-export function reducer(state = initialState, action: LoginActions): LoginState {
+export function loginReducer(state = initialLoginState, action: LoginActions): LoginState {
   switch (action.type) {
     case LoginActionTypes.SignedIn:
       return {

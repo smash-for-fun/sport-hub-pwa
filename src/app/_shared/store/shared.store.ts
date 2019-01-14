@@ -1,14 +1,16 @@
-import * as fromScreen from './screen';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import { screenReducer, ScreenState } from './screen';
 
 export interface SharedState {
-  screen: fromScreen.ScreenState;
+  screen: ScreenState;
 }
 
-export const reducers: ActionReducerMap<SharedState> = {
-  screen: fromScreen.screenReducer
+export const sharedReducers: ActionReducerMap<SharedState> = {
+  screen: screenReducer
 };
 
-
 const getSharedState = createFeatureSelector<SharedState>('_shared');
-export const screenSelector = createSelector(getSharedState, state => state.screen);
+export const screenSelector = createSelector(
+  getSharedState,
+  state => state.screen
+);

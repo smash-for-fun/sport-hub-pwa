@@ -1,16 +1,18 @@
-import { Action } from '@ngrx/store';
-import { PreferencesActions } from '../actions/preferences.actions';
-import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import { PreferencesActions } from '../actions';
+
 
 export interface PreferencesState {
   somethingAwesome: boolean;
 }
 
-export const initialState: PreferencesState = {
+export const initialPreferencesState: PreferencesState = {
   somethingAwesome: false
 };
 
-export function reducer(state = initialState, action: PreferencesActions): PreferencesState {
+export function preferencesReducer(
+  state = initialPreferencesState,
+  action: PreferencesActions
+): PreferencesState {
   switch (action.type) {
     default:
       return state;

@@ -1,18 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestingModule } from 'src/testing/utils';
+import { AppState } from '@app/app.state';
+import { ScreenState, SharedState } from '@app/_shared/store';
+import { Store } from '@ngrx/store';
+import { MockStore, TestingModule } from '@testing/utils';
 import { ShellComponent } from './shell.component';
-import { StoreModule } from '@ngrx/store';
-import * as fromAuth from '../../store';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
   let fixture: ComponentFixture<ShellComponent>;
 
+  let store: MockStore<AppState>;
+
+  const screenState: ScreenState = {
+    desktop: true,
+    mobile: false,
+    tablet: false
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TestingModule],
-      providers: [ShellComponent, StoreModule.forFeature('auth', fromAuth.reducers)]
+      declarations: [ShellComponent]
     }).compileComponents();
+
+    store = TestBed.get(Store);
+    store.setState({ _shared: { screen: screenState } } as AppState);
   }));
 
   beforeEach(() => {

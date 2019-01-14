@@ -1,17 +1,20 @@
 import { async, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppComponent } from '@app/app.component';
+import { ScreenState } from '@app/_shared';
 import { Store } from '@ngrx/store';
-import { MockStore, TestingModule, provideMockStore } from 'src/testing/utils';
-import { AppComponent } from './app.component';
-import { ScreenService } from './_shared';
-import * as fromShared from './_shared/store';
+import { MockStore, TestingModule } from '@testing/utils';
+import { AppState } from './app.state';
 
-fdescribe('AppComponent', () => {
-  let store: MockStore<fromShared.ScreenState>;
-  let state: fromShared.ScreenState;
+describe('AppComponent', () => {
+  let store: MockStore<AppState>;
 
-  const screenState = { desktop: true, mobile: false, tablet: false };
+  const screenState: ScreenState = {
+    desktop: true,
+    mobile: false,
+    tablet: false
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,12 +23,11 @@ fdescribe('AppComponent', () => {
         MatSnackBarModule,
         TestingModule,
         ServiceWorkerModule.register('', { enabled: false })
-      ],
-      providers: [provideMockStore()]
+      ]
     }).compileComponents();
+
     store = TestBed.get(Store);
-    state = createState(screenState);
-    store.setState(state);
+    store.setState({ _shared: { screen: screenState } } as AppState);
   }));
 
   it('should create the app', async(() => {
@@ -39,9 +41,9 @@ fdescribe('AppComponent', () => {
     expect(app.title).toEqual('Sport hub');
   }));
 
-  function createState(screenstate: fromShared.ScreenState) {
+  function createState(screenstate: ScreenState) {
     return {
       ...screenstate
-    } as fromShared.ScreenState;
+    } as ScreenState;
   }
 });

@@ -1,28 +1,37 @@
-import * as fromList from './list';
-import { userAdapter } from './list';
-import * as fromPreferences from './prefrences';
-
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import { userListAdapter, userListReducer, UserListState } from './list';
+import { preferencesReducer, PreferencesState } from './prefrences';
 
 export interface UserState {
-  list: fromList.ListState;
-  preferences: fromPreferences.PreferencesState;
+  list: UserListState;
+  preferences: PreferencesState;
 }
 
-export const reducers: ActionReducerMap<UserState> = {
-  list: fromList.reducer,
-  preferences: fromPreferences.reducer
+export const userReducer: ActionReducerMap<UserState> = {
+  list: userListReducer,
+  preferences: preferencesReducer
 };
 
 const getUserState = createFeatureSelector<UserState>('user');
 
-export const preferenceSelector = createSelector(getUserState, state => state.preferences);
+export const preferenceSelector = createSelector(
+  getUserState,
+  state => state.preferences
+);
 export const {
   selectIds,
   selectEntities: selectUsers,
   selectAll: selectAllUsers,
   selectTotal
-} = userAdapter.getSelectors(createSelector(getUserState, state => state.list));
+} = userListAdapter.getSelectors(
+  createSelector(
+    getUserState,
+    state => state.list
+  )
+);
 
 export const getSelectedUserId = (state: UserState) => state.list.selectedUser;
-export const selectCurrentUser = createSelector(getUserState, getSelectedUserId);
+export const selectCurrentUser = createSelector(
+  getUserState,
+  getSelectedUserId
+);

@@ -1,9 +1,9 @@
+import { UserModel } from '@app/user/models';
 import { Action } from '@ngrx/store';
-import { UserActionTypes } from './user.actions';
-import { UserModel } from '../../../models/user.model';
+import { UserListActionTypes } from './user.actions';
 
 export class UserSelectSuccessAction implements Action {
-  readonly type = UserActionTypes.SELECT_SUCCESS;
+  readonly type = UserListActionTypes.SELECT_SUCCESS;
 
   user: UserModel;
 

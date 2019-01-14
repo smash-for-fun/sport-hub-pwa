@@ -1,5 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
-import { TestingModule } from 'src/testing/utils';
+import { TestingModule } from '@testing/utils';
 import { AuthGuard } from './auth.guard';
 
 describe('AuthGuard', () => {

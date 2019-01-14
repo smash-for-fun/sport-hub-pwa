@@ -1,24 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { UserRoutingModule } from './user-routing.module';
-import { UserComponent } from './pages/user.component';
-
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './store';
-import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './store/list/effects';
+import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
-import { SharedModule } from '../_shared/shared.module';
-import { UserDetailComponent } from './pages';
-import { UserListComponent } from './pages';
-import { LoginComponent } from './pages';
+import { SharedModule } from '@app/_shared';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { LoginComponent, UserComponent, UserDetailComponent, UserListComponent } from './pages';
+import { PreferencesEffects, UserEffects, userReducer } from './store';
+import { UserRoutingModule } from './user-routing.module';
 
-const materialModules = [
-  MatButtonModule,
-  MatCardModule,
-  MatListModule,
-];
+
+const materialModules = [MatButtonModule, MatCardModule, MatListModule];
 
 @NgModule({
   imports: [
@@ -28,10 +19,9 @@ const materialModules = [
 
     ...materialModules,
 
-    StoreModule.forFeature('user', reducers),
-    EffectsModule.forFeature([UserEffects])
+    StoreModule.forFeature('user', userReducer),
+    EffectsModule.forFeature([UserEffects, PreferencesEffects])
   ],
   declarations: [UserComponent, UserDetailComponent, UserListComponent, LoginComponent]
 })
-export class UserModule {
-}
+export class UserModule {}

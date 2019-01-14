@@ -1,34 +1,27 @@
-import { NgModule } from '@angular/core';
-import { ClubDetailComponent } from './pages/club-detail/club-detail.component';
-import { ClubComponent } from './pages/club.component';
 import { CommonModule } from '@angular/common';
-import { ClubRoutingModule } from './club-routing.module';
-import { SharedModule } from '../_shared/shared.module';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from 'src/app/auth/store/auth.store';
-import { EffectsModule } from '@ngrx/effects';
-import { ClubEffects } from './store';
+import { NgModule } from '@angular/core';
 import { MatListModule } from '@angular/material';
+import { authReducers } from '@app/auth';
+import { SharedModule } from '@app/_shared';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { ClubRoutingModule } from './club-routing.module';
+import { ClubComponent, ClubDetailComponent } from './pages';
+import { ClubEffects } from './store';
 
-
-
-const materialModules = [
-    MatListModule,
-];
+const materialModules = [MatListModule];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ClubRoutingModule,
-        SharedModule,
+  imports: [
+    CommonModule,
+    ClubRoutingModule,
+    SharedModule,
 
-        ...materialModules,
+    ...materialModules,
 
-        StoreModule.forFeature('club', reducers),
-        EffectsModule.forFeature([ClubEffects])
-    ],
-    declarations: [ClubComponent, ClubDetailComponent]
+    StoreModule.forFeature('club', authReducers),
+    EffectsModule.forFeature([ClubEffects])
+  ],
+  declarations: [ClubComponent, ClubDetailComponent]
 })
-export class ClubModule {
-
-}
+export class ClubModule {}
