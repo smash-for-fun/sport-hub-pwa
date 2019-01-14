@@ -16,3 +16,8 @@ flags:
   frontend:
     paths:
       - src/
+
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
