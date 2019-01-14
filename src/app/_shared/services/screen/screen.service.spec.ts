@@ -1,25 +1,30 @@
-import { Store } from '@ngrx/store';
 import { inject, TestBed } from '@angular/core/testing';
-import * as fromShared from '../../store';
-
+import { TestingModule, MockStore } from '@testing/utils';
 import { ScreenService } from './screen.service';
-import { MockStore, TestingModule } from 'src/testing/utils';
-
-class ScreenStore extends MockStore<fromShared.ScreenState> {}
+import { AppState } from '@app/app.state';
+import { ScreenState } from '@app/_shared';
+import { Store } from '@ngrx/store';
 
 describe('ScreenService', () => {
+  let store: MockStore<AppState>;
+
+  const screenState: ScreenState = {
+    desktop: true,
+    mobile: false,
+    tablet: false
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestingModule],
-      providers: [
-        ScreenService,
-      ]
+      providers: [ScreenService]
     }).compileComponents();
+
+    store = TestBed.get(Store);
+    store.setState({ _shared: { screen: screenState } } as AppState);
   });
 
   it('should be created', inject([ScreenService], (service: ScreenService) => {
     expect(service).toBeTruthy();
   }));
-
 });

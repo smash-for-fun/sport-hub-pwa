@@ -1,10 +1,8 @@
 import { Action } from '@ngrx/store';
-import { UserActionTypes } from './user.actions';
+import { UserListActionTypes } from './user.actions';
 
 export class UserQueryAction implements Action {
-  readonly type = UserActionTypes.QUERY;
+  readonly type = UserListActionTypes.QUERY;
 
-  constructor() {
-
-  }
+  constructor() {}
 }

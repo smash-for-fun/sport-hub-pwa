@@ -1,18 +1,21 @@
-import { ClubAddedAction } from './clubs.added.action';
-import { ClubModifiedAction } from './clubs.modified.action';
-import { ClubRemovedAction } from './clubs.removed.action';
-import { ClubQueryAction } from './clubs.query.action';
-import { ClubUpdateAction } from './clubs.update.action';
-import { ClubUpdateSuccessAction } from './clubs.update-success.action';
-import { ClubCreateAction } from './clubs.create.action';
-import { ClubUpdateFailedAction } from './clubs.update-failed.action';
-import { ClubCreateSuccessAction } from './clubs.create-success.action';
-import { ClubCreateFailedAction } from './clubs.create-failed.action';
-import { ClubDeleteAction } from './clubs.delete.action';
-import { ClubDeleteSuccessAction } from './clubs.delete-success.action';
-import { ClubDeleteFailedAction } from './clubs.delete-failed.action';
-import { ClubSelectAction } from './clubs.select.action';
-import { ClubSelectSuccessAction } from './clubs.select-success.action';
+import {
+  ClubAddedAction,
+  ClubCreateAction,
+  ClubCreateFailedAction,
+  ClubCreateSuccessAction,
+  ClubDeleteAction,
+  ClubDeleteFailedAction,
+  ClubDeleteSuccessAction,
+  ClubModifiedAction,
+  ClubQueryAction,
+  ClubRemovedAction,
+  ClubUpdateAction,
+  ClubUpdateFailedAction,
+  ClubUpdateSuccessAction,
+  ClubSelectSuccessAction,
+  ClubSelectAction
+} from '../actions';
+
 
 export enum ClubActionTypes {
   // Firestore actions
@@ -36,18 +39,18 @@ export enum ClubActionTypes {
 }
 
 export type ClubActions =
-  ClubQueryAction |
-  ClubAddedAction |
-  ClubModifiedAction |
-  ClubRemovedAction |
-  ClubUpdateAction |
-  ClubUpdateSuccessAction |
-  ClubUpdateFailedAction |
-  ClubCreateAction |
-  ClubCreateSuccessAction |
-  ClubCreateFailedAction |
-  ClubDeleteAction |
-  ClubDeleteSuccessAction |
-  ClubDeleteFailedAction |
-  ClubSelectAction |
-  ClubSelectSuccessAction ;
+  | ClubQueryAction
+  | ClubAddedAction
+  | ClubModifiedAction
+  | ClubRemovedAction
+  | ClubUpdateAction
+  | ClubUpdateSuccessAction
+  | ClubUpdateFailedAction
+  | ClubCreateAction
+  | ClubCreateSuccessAction
+  | ClubCreateFailedAction
+  | ClubDeleteAction
+  | ClubDeleteSuccessAction
+  | ClubDeleteFailedAction
+  | ClubSelectAction
+  | ClubSelectSuccessAction;

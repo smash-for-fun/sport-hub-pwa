@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ScreenService } from '../../services/screen/screen.service';
 import { Observable } from 'rxjs';
+import { ScreenService } from '@app/_shared/services';
 
 @Component({
   selector: 'app-shell',

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import * as fromUser from '../../store';
-import * as fromAuth from '../../../auth/store';
-import { select, Store } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
-import { UserSelectAction } from '../../store/list/actions/user.select.action';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AppState } from '@app/app.state';
+import { AuthState, loginSelector } from '@app/auth';
+import { selectCurrentUser, UserListState, UserSelectAction } from '@app/user/store';
+import { environment } from '@env/environment';
+import { select, Store } from '@ngrx/store';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,32 +14,32 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-  user$ = this.userStore.pipe(select(fromUser.selectCurrentUser));
-  auth$ = this.authStore.pipe(select(fromAuth.loginSelector));
+  user$ = this.store.pipe(select(selectCurrentUser));
+  auth$ = this.store.pipe(select(loginSelector));
 
   constructor(
-    private userStore: Store<fromUser.UserState>,
-    private authStore: Store<fromAuth.AuthState>,
+    private store: Store<AppState>,
     private route: ActivatedRoute,
     private http: HttpClient
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      filter(r => r.has('id')),
-      map(param => this.userStore.dispatch(new UserSelectAction({ uid: param.get('id') })))
-    ).subscribe();
+    this.route.paramMap
+      .pipe(
+        filter(r => r.has('id')),
+        map(param => this.store.dispatch(new UserSelectAction({ uid: param.get('id') })))
+      )
+      .subscribe();
   }
-
 
   sendTestMail() {
-    this.http.get(`${environment.api }/testmail`).subscribe(r => {
-      console.log(r);
-    }, e => {
-      console.error(e);
-    });
+    this.http.get(`${environment.api}/testmail`).subscribe(
+      success => {
+        console.log(success);
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
-
 }

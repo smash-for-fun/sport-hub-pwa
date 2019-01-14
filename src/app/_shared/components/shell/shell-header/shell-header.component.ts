@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthState, LoginProvider, loginSelector, LoginSignInAction, LoginSignOutAction } from '@app/auth';
 import { select, Store } from '@ngrx/store';
-import * as fromAuth from '../../../../auth/store';
-import { LoginSignInAction } from '../../../../auth/store/login/actions/login.sign-in.action';
-import { LoginProvider } from '../../../../auth/models';
-import { LoginSignOutAction } from '../../../../auth/store/login/actions';
+import { AppState } from '@app/app.state';
 
 @Component({
   selector: 'app-shell-header',
@@ -11,10 +9,10 @@ import { LoginSignOutAction } from '../../../../auth/store/login/actions';
   styleUrls: ['./shell-header.component.scss']
 })
 export class ShellHeaderComponent {
-  auth$ = this.authStore.pipe(select(fromAuth.loginSelector));
+  auth$ = this.authStore.pipe(select(loginSelector));
 
   constructor(
-    private authStore: Store<fromAuth.AuthState>
+    private authStore: Store<AppState>
   ) {
   }
 

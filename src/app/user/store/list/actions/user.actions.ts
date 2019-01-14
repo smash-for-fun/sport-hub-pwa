@@ -1,20 +1,22 @@
-import { UserAddedAction } from './user.added.action';
-import { UserModifiedAction } from './user.modified.action';
-import { UserRemovedAction } from './user.removed.action';
-import { UserQueryAction } from './user.query.action';
-import { UserUpdateAction } from './user.update.action';
-import { UserUpdateSuccessAction } from './user.update-success.action';
-import { UserCreateAction } from './user.create.action';
-import { UserUpdateFailedAction } from './user.update-failed.action';
-import { UserCreateSuccessAction } from './user.create-success.action';
-import { UserCreateFailedAction } from './user.create-failed.action';
-import { UserDeleteAction } from './user.delete.action';
-import { UserDeleteSuccessAction } from './user.delete-success.action';
-import { UserDeleteFailedAction } from './user.delete-failed.action';
-import { UserSelectAction } from './user.select.action';
-import { UserSelectSuccessAction } from './user.select-success.action';
+import {
+  UserAddedAction,
+  UserCreateAction,
+  UserCreateFailedAction,
+  UserCreateSuccessAction,
+  UserDeleteAction,
+  UserDeleteFailedAction,
+  UserDeleteSuccessAction,
+  UserModifiedAction,
+  UserQueryAction,
+  UserRemovedAction,
+  UserSelectAction,
+  UserSelectSuccessAction,
+  UserUpdateAction,
+  UserUpdateFailedAction,
+  UserUpdateSuccessAction
+} from '../actions';
 
-export enum UserActionTypes {
+export enum UserListActionTypes {
   // Firestore actions
   ADDED = '[User] added',
   MODIFIED = '[User] modified',
@@ -35,19 +37,19 @@ export enum UserActionTypes {
   SELECT_SUCCESS = '[User] select success'
 }
 
-export type UserActions =
-  UserQueryAction |
-  UserAddedAction |
-  UserModifiedAction |
-  UserRemovedAction |
-  UserUpdateAction |
-  UserUpdateSuccessAction |
-  UserUpdateFailedAction |
-  UserCreateAction |
-  UserCreateSuccessAction |
-  UserCreateFailedAction |
-  UserDeleteAction |
-  UserDeleteSuccessAction |
-  UserDeleteFailedAction |
-  UserSelectAction |
-  UserSelectSuccessAction ;
+export type UserListActions =
+  | UserQueryAction
+  | UserAddedAction
+  | UserModifiedAction
+  | UserRemovedAction
+  | UserUpdateAction
+  | UserUpdateSuccessAction
+  | UserUpdateFailedAction
+  | UserCreateAction
+  | UserCreateSuccessAction
+  | UserCreateFailedAction
+  | UserDeleteAction
+  | UserDeleteSuccessAction
+  | UserDeleteFailedAction
+  | UserSelectAction
+  | UserSelectSuccessAction;

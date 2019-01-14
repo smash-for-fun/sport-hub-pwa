@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { SwUpdate } from '@angular/service-worker';
+import { ScreenService } from '@app/_shared';
 import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, tap } from 'rxjs/operators';
-import { ScreenService } from './_shared/services/screen/screen.service';
-import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-root',

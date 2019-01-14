@@ -4,6 +4,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActionsSubject, ReducerManager, StateObservable, Store, StoreModule } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
+import {
+  MatButtonModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatMenuModule
+} from '@angular/material';
 
 @Injectable()
 export class MockStore<T> extends Store<T> {
@@ -35,9 +42,26 @@ export function provideMockStore() {
     NoopAnimationsModule,
     RouterTestingModule,
     HttpClientTestingModule,
+
+    // Widly used components
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+
     StoreModule.forRoot({})
   ],
-  exports: [NoopAnimationsModule, RouterTestingModule]
+  providers: [provideMockStore()],
+  exports: [
+    NoopAnimationsModule,
+    RouterTestingModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule
+  ]
 })
 export class TestingModule {
   constructor() {}

@@ -1,6 +1,6 @@
-import { Action } from '@ngrx/store';
+import { UserModel } from './../../../../user/models/user.model';
 import { LoginActionTypes } from './login.actions';
-import { UserModel } from '../../../../user/models/user.model';
+import { Action } from '@ngrx/store';
 import * as firebase from 'firebase';
 
 export class LoginSignedInAction implements Action {

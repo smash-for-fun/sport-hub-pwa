@@ -1,28 +1,23 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { LoginActionTypes, LoginSignUpAction } from '@app/auth';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { from, Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { from, Observable, of } from 'rxjs';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 import {
   ClubActionTypes,
   ClubCreateAction,
   ClubDeleteSuccessAction,
   ClubQueryAction,
+  ClubSelectSuccessAction,
   ClubUpdateAction,
   ClubUpdateSuccessAction
 } from '../actions';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { ClubModel } from '../../../models/club.model';
-
-import { AngularFirestore } from '@angular/fire/firestore';
-import { ClubSelectSuccessAction } from '../actions/clubs.select-success.action';
-import {
-  LoginActionTypes,
-  LoginSignUpAction
-} from '../../../../auth/store/login/actions';
+import { ClubModel } from './../../../models/club.model';
 
 @Injectable()
 export class ClubEffects {
-
   location = 'clubs';
   @Effect()
   query$: Observable<Action> = this.actions$.pipe(
@@ -58,17 +53,18 @@ export class ClubEffects {
   create$: Observable<Action> = this.actions$.pipe(
     ofType<ClubCreateAction>(ClubActionTypes.CREATE),
     switchMap(data => {
-
-      return from(this.afs.doc(`${this.location}/${data.payload.uid}`).set({
-        ...Object.assign(new ClubModel(), {
-          uid: data.payload.uid,
-          // email: data.payload.email,
-          // photoURL: data.payload.photoURL,
-          // displayName: data.payload.displayName
-        })
-        /*        updatedAt: this.timestamp,
+      return from(
+        this.afs.doc(`${this.location}/${data.payload.uid}`).set({
+          ...Object.assign(new ClubModel(), {
+            uid: data.payload.uid
+            // email: data.payload.email,
+            // photoURL: data.payload.photoURL,
+            // displayName: data.payload.displayName
+          })
+          /*        updatedAt: this.timestamp,
                 createdAt: this.timestamp*/
-      }));
+        })
+      );
     }),
     // catchError( error => new ClubUpdateFailedAction(error)),
     map(() => new ClubUpdateSuccessAction())
@@ -104,8 +100,5 @@ export class ClubEffects {
   );
   private const;
 
-  constructor(private actions$: Actions, private afs: AngularFirestore) {
-  }
-
-
+  constructor(private actions$: Actions, private afs: AngularFirestore) {}
 }

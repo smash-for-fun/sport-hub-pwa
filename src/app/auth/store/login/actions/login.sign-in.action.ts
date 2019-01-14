@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 import { LoginActionTypes } from './login.actions';
-import { UserModel } from '../../../../user/models/user.model';
-import { LoginProvider } from '../../../models';
+import { LoginProvider } from '@app/auth/models';
 
 export class LoginSignInAction implements Action {
   readonly type = LoginActionTypes.SignIn;

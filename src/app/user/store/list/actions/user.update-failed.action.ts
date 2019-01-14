@@ -1,10 +1,8 @@
 import { Action } from '@ngrx/store';
-import { UserActionTypes } from './user.actions';
+import { UserListActionTypes } from './user.actions';
 
 export class UserUpdateFailedAction implements Action {
-  readonly type = UserActionTypes.UPDATE_FAILED;
+  readonly type = UserListActionTypes.UPDATE_FAILED;
 
-  constructor(error) {
-
-  }
+  constructor(error) {}
 }

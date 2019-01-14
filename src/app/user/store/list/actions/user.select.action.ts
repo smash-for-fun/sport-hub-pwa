@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
-import { UserActionTypes } from './user.actions';
+import { UserListActionTypes } from './user.actions';
 
 export class UserSelectAction implements Action {
-  readonly type = UserActionTypes.SELECT;
+  readonly type = UserListActionTypes.SELECT;
 
   uid: string | number;
 

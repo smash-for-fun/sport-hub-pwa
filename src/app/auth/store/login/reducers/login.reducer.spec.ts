@@ -1,13 +1,13 @@
-import { reducer, initialState } from './login.reducer';
+import { initialLoginState, loginReducer } from './login.reducer';
 
 describe('Login Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = loginReducer(initialLoginState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(initialLoginState);
     });
   });
 });

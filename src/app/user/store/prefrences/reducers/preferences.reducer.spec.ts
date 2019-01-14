@@ -1,13 +1,13 @@
-import { reducer, initialState } from './preferences.reducer';
+import { initialPreferencesState, preferencesReducer } from './preferences.reducer';
 
 describe('Preferences Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = preferencesReducer(initialPreferencesState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(initialPreferencesState);
     });
   });
 });

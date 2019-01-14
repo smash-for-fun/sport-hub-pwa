@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
-import { UserActionTypes } from './user.actions';
+import { UserListActionTypes } from './user.actions';
 
 export class UserDeleteSuccessAction implements Action {
-  readonly type = UserActionTypes.DELETE_SUCCESS;
+  readonly type = UserListActionTypes.DELETE_SUCCESS;
 
-  constructor() {  }
+  constructor() {}
 }
