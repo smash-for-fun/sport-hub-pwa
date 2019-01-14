@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatMenuModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatMenuModule
+} from '@angular/material';
 import { ShellComponent } from './components/shell/shell.component';
 import { ShellContentComponent } from './components/shell/shell-content/shell-content.component';
 import { ShellSidebarComponent } from './components/shell/shell-sidebar/shell-sidebar.component';
@@ -19,8 +25,12 @@ import { reducers } from './store';
 
     StoreModule.forFeature('_shared', reducers)
   ],
-  declarations: [ShellComponent, ShellContentComponent, ShellSidebarComponent, ShellHeaderComponent],
+  declarations: [
+    ShellComponent,
+    ShellContentComponent,
+    ShellSidebarComponent,
+    ShellHeaderComponent
+  ],
   exports: [ShellComponent, ShellContentComponent, ShellSidebarComponent, ShellHeaderComponent]
 })
-export class SharedModule {
-}
+export class SharedModule {}
