@@ -49,12 +49,6 @@ jobs:
             JUNIT_REPORT_NAME: test-results.xml
           when: always
 
-      # - run:
-      #     name: Debug
-      #     command: |
-      #       ls -R ./junit
-      #     when: never
-
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: ./coverage
