@@ -14,8 +14,7 @@ import { AppState } from '@app/app.state';
 export class ClubDetailComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
-    private route: ActivatedRoute,
-    private http: HttpClient
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
     this.route.paramMap
