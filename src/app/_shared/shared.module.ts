@@ -8,25 +8,26 @@ import {
   MatToolbarModule
 } from '@angular/material';
 
-import { StoreModule } from '@ngrx/store';
-import { sharedReducers } from './store';
+
 import {
   ShellComponent,
   ShellContentComponent,
   ShellSidebarComponent,
   ShellHeaderComponent
 } from './components';
+import { SharedStoreModule } from './store/shared-store.module';
 
 @NgModule({
   imports: [
     CommonModule,
+
+    SharedStoreModule,
+
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-
-    StoreModule.forFeature('_shared', sharedReducers)
   ],
   declarations: [
     ShellComponent,

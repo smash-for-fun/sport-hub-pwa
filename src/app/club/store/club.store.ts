@@ -5,7 +5,7 @@ export interface ClubState {
   clubs: ClubListState;
 }
 
-export const reducers: ActionReducerMap<ClubState> = {
+export const clubReducers: ActionReducerMap<ClubState> = {
   clubs: clubReducer
 };
 
