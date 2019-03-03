@@ -14,6 +14,7 @@ import { environment } from '@env/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 
 const materialModules = [MatSnackBarModule];
 
@@ -22,12 +23,16 @@ const materialModules = [MatSnackBarModule];
   imports: [
     BrowserModule,
     RouterModule,
+    StoreModule.forRoot({
+      router: routerReducer
+    }),
     AppRoutingModule,
     HttpClientModule,
     ...materialModules,
 
     AuthModule.forRoot(),
-
+    // Connects RouterModule with StoreModule
+    StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25
@@ -36,6 +41,7 @@ const materialModules = [MatSnackBarModule];
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+
     BrowserAnimationsModule
   ],
   providers: [],

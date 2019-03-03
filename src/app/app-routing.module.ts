@@ -5,11 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: '/user', pathMatch: 'full' },
   { path: 'user', loadChildren: '@app/user#UserModule' },
-  { path: 'club', loadChildren: '@app/club#ClubModule' },
+  { path: 'club', loadChildren: '@app/club#ClubModule' }
   // { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes/*, { useHash: true}*/)]
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes)
+  ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

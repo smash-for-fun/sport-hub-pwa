@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { AppState } from '@app/app.state';
 import { UserModel } from '@app/user/models';
-import { selectAllUsers, UserQueryAction, UserUpdateAction } from '@app/user/store';
+import { selectAllUsers, UserQueryAction, UserState, UserUpdateAction } from '@app/user/store';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-user-list',
@@ -13,7 +12,7 @@ import { Observable } from 'rxjs';
 export class UserListComponent {
   users: Observable<UserModel[]> = this.userStore.pipe(select(selectAllUsers));
 
-  constructor(private userStore: Store<AppState>) {
+  constructor(private userStore: Store<UserState>) {
     this.userStore.dispatch(new UserQueryAction());
   }
 
