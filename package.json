@@ -48,7 +48,7 @@
     "@ngrx/store-devtools": "^7.0.0",
     "@types/jasmine": "~3.4.2",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "~12.7.8",
+    "@types/node": "~12.7.9",
     "codelyzer": "~5.1.2",
     "firebase-tools": "^7.4.0",
     "jasmine-core": "~3.5.0",
