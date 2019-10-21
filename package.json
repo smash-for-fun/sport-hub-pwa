@@ -46,7 +46,7 @@
     "@angular/language-service": "^8.2.11",
     "@ngrx/schematics": "^8.3.0",
     "@ngrx/store-devtools": "^7.0.0",
-    "@types/jasmine": "~3.4.3",
+    "@types/jasmine": "~3.4.4",
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "~12.11.1",
     "codelyzer": "~5.1.2",
