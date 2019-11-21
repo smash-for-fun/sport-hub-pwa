@@ -1,34 +1,36 @@
 <?xml version="1.0"?>
-<testsuite name="Chrome 71.0.3578 (Windows 10.0.0)" package="" timestamp="2019-01-14T16:47:34" id="0" hostname="DESKTOP-v2" tests="22" errors="0" failures="0" time="1.21">
+<testsuite name="Chrome 78.0.3904 (Windows 10.0.0)" package="" timestamp="2019-11-20T18:27:43" id="0" hostname="DESKTOP-v2" tests="22" errors="0" failures="0" time="0.87">
   <properties>
-    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"/>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"/>
   </properties>
-  <testcase name="PreferencesEffects should be created" time="0.019" classname="PreferencesEffects"/>
-  <testcase name="Preferences Reducer unknown action should return the initial state" time="0.003" classname="Preferences Reducer"/>
-  <testcase name="UserModule should create an instance" time="0" classname="UserModule"/>
-  <testcase name="AuthModule should create an instance" time="0" classname="AuthModule"/>
-  <testcase name="AuthGuard should ..." time="0.144" classname="AuthGuard"/>
-  <testcase name="AuthService should be created" time="0.099" classname="AuthService"/>
-  <testcase name="ShellContentComponent should create" time="0.015" classname="ShellContentComponent"/>
-  <testcase name="SharedModule should create an instance" time="0" classname="SharedModule"/>
-  <testcase name="UserListComponent should create" time="0.111" classname="UserListComponent"/>
+  <testcase name="ShellHeaderComponent should create" time="0.163" classname="ShellHeaderComponent"/>
+  <testcase name="UserComponent should create" time="0.155" classname="UserComponent"/>
+  <testcase name="ShellSidebarComponent should create" time="0.032" classname="ShellSidebarComponent"/>
+  <testcase name="UserDetailComponent should create" time="0.067" classname="UserDetailComponent"/>
+  <testcase name="UserListComponent should create" time="0.082" classname="UserListComponent"/>
+  <testcase name="LoginComponent should create" time="0.012" classname="LoginComponent"/>
+  <testcase name="AppComponent should create the app" time="0.062" classname="AppComponent"/>
+  <testcase name="AppComponent should have as title 'Sport hub'" time="0.063" classname="AppComponent"/>
+  <testcase name="Login Reducer unknown action should return the initial state" time="0.001" classname="Login Reducer unknown action"/>
+  <testcase name="Preferences Reducer unknown action should return the initial state" time="0.001" classname="Preferences Reducer unknown action"/>
+  <testcase name="Screen Reducer unknown action should return the initial state" time="0.001" classname="Screen Reducer unknown action"/>
   <testcase name="LoginEffects should be created" time="0" classname="LoginEffects">
     <skipped/>
   </testcase>
-  <testcase name="UserModel Reducer unknown action should return the initial state" time="0.001" classname="UserModel Reducer"/>
-  <testcase name="Screen Reducer unknown action should return the initial state" time="0" classname="Screen Reducer"/>
-  <testcase name="UserDetailComponent should create" time="0.108" classname="UserDetailComponent"/>
-  <testcase name="Login Reducer unknown action should return the initial state" time="0" classname="Login Reducer"/>
-  <testcase name="UserComponent should create" time="0.207" classname="UserComponent"/>
-  <testcase name="AppComponent should have as title 'Sport hub'" time="0.1" classname="AppComponent"/>
-  <testcase name="AppComponent should create the app" time="0.095" classname="AppComponent"/>
-  <testcase name="LoginComponent should create" time="0.008" classname="LoginComponent"/>
-  <testcase name="ShellSidebarComponent should create" time="0.037" classname="ShellSidebarComponent"/>
-  <testcase name="ShellHeaderComponent should create" time="0.106" classname="ShellHeaderComponent"/>
-  <testcase name="ScreenService should be created" time="0.07" classname="ScreenService"/>
-  <testcase name="ShellComponent should create" time="0.087" classname="ShellComponent"/>
+  <testcase name="PreferencesEffects should be created" time="0.004" classname="PreferencesEffects"/>
+  <testcase name="ShellComponent should create" time="0.056" classname="ShellComponent"/>
+  <testcase name="AuthService should be created" time="0.051" classname="AuthService"/>
+  <testcase name="UserModule should create an instance" time="0" classname="UserModule"/>
+  <testcase name="ScreenService should be created" time="0.054" classname="ScreenService"/>
+  <testcase name="AuthGuard should ..." time="0.053" classname="AuthGuard"/>
+  <testcase name="ShellContentComponent should create" time="0.012" classname="ShellContentComponent"/>
+  <testcase name="AuthModule should create an instance" time="0" classname="AuthModule"/>
+  <testcase name="SharedModule should create an instance" time="0" classname="SharedModule"/>
+  <testcase name="UserModel Reducer unknown action should return the initial state" time="0.001" classname="UserModel Reducer unknown action"/>
   <system-out>
-    <![CDATA[
+    <![CDATA[Chrome 78.0.3904 (Windows 10.0.0) ERROR
+  DisconnectedClient disconnected from CONNECTED state (transport error)
+
 ]]>
   </system-out>
   <system-err/>
